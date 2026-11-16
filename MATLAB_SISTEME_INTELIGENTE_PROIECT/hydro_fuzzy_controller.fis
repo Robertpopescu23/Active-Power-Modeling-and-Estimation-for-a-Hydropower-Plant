@@ -1,0 +1,47 @@
+[System]
+Name='hydro_fuzzy_controller'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=9
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='Discharge_Q'
+Range=[10 220]
+NumMFs=3
+MF1='Low':'trimf',[10 10 115]
+MF2='Medium':'trimf',[50 115 180]
+MF3='High':'trimf',[115 220 220]
+
+[Input2]
+Name='Head_H'
+Range=[20 65]
+NumMFs=3
+MF1='Low':'trimf',[20 20 42.5]
+MF2='Medium':'trimf',[30 42.5 55]
+MF3='High':'trimf',[42.5 65 65]
+
+[Output1]
+Name='ActivePower_P'
+Range=[0 125]
+NumMFs=3
+MF1='Low':'trimf',[0 0 62.5]
+MF2='Medium':'trimf',[20 62.5 105]
+MF3='High':'trimf',[62.5 125 125]
+
+[Rules]
+1 1, 1 (1) : 1
+2 1, 1 (1) : 1
+3 1, 2 (1) : 1
+1 2, 1 (1) : 1
+2 2, 2 (1) : 1
+3 2, 3 (1) : 1
+1 3, 2 (1) : 1
+2 3, 3 (1) : 1
+3 3, 3 (1) : 1
